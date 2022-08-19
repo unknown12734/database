@@ -7,7 +7,7 @@ app=Flask(__name__)
 @app.route("/")
 @app.route("/index")
 def index():
-    con = psycopg2.connect(database='priyanka', user='postgres',password='postgres', host='3.108.220.38', port= '5432')
+    con = psycopg2.connect(database='priyanka', user='postgres',password='postgres', host='localhost', port= '5432')
     cur=con.cursor()
     cur.execute("select * from users")
     data=cur.fetchall()
@@ -19,7 +19,7 @@ def add_user():
     if request.method=='POST':
         uname=request.form['uname']
         contact=request.form['contact']
-        con = psycopg2.connect(database='priyanka', user='postgres', password='postgres', host='3.108.220.38', port= '5432')
+        con = psycopg2.connect(database='priyanka', user='postgres', password='postgres', host='localhost', port= '5432')
         cur=con.cursor()
         cur.execute("insert into users(UNAME,CONTACT) values (%s,%s)",(uname,contact))
         con.commit()
@@ -34,13 +34,13 @@ def edit_user(uid):
         print(uid)
         uname=request.form['uname']
         contact=request.form['contact']
-        con = psycopg2.connect(database='priyanka', user='postgres', password='postgres', host='3.108.220.38', port= '5432')
+        con = psycopg2.connect(database='priyanka', user='postgres', password='postgres', host='localhost', port= '5432')
         cur=con.cursor()
         cur.execute("update users set UNAME=%s,CONTACT=%s where UID=%s",(uname,contact,uid))
         con.commit()
         flash('User Updated',' success')
         return redirect(url_for("index"))
-    con = psycopg2.connect(database='priyanka', user='postgres', password='postgres', host='3.108.220.38', port= '5432')
+    con = psycopg2.connect(database='priyanka', user='postgres', password='postgres', host='localhost', port= '5432')
     ##con.row_factory=sql.Row
     cur=con.cursor()
     cur.execute("select * from users where UID=%s",(uid,))
@@ -49,7 +49,7 @@ def edit_user(uid):
     
 @app.route("/delete_user/<string:uid>",methods=['GET'])
 def delete_user(uid):
-    con = psycopg2.connect(database='priyanka', user='postgres', password='postgres', host='3.108.220.38', port= '5432')
+    con = psycopg2.connect(database='priyanka', user='postgres', password='postgres', host='localhost', port= '5432')
     cur=con.cursor()
     print(uid)
     query = f"delete from users where UID = {int(uid)}"

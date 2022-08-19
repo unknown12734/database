@@ -7,7 +7,7 @@ import psycopg2
 
 #establishing the connection
 con = psycopg2.connect(
-   database="priyanka", user='postgres', password='postgres', host='3.108.220.38', port= '5432'
+   database="priyanka", user='postgres', password='postgres', host='localhost', port= '5432'
 )
 
 #Create a Connection
