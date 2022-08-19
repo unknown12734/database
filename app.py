@@ -27,6 +27,7 @@ def add_user():
         return redirect(url_for("index"))
     return render_template("add_user.html")
 
+
 @app.route("/edit_user/<string:uid>",methods=['POST','GET'])
 def edit_user(uid):
     if request.method=='POST':
