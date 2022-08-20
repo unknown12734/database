@@ -4,11 +4,26 @@
 #con = sql.connect('db_web.db')
 
 import psycopg2
+import os
 
-#establishing the connection
-con = psycopg2.connect(
-   database="priyanka", user='postgres', password='postgres', host='3.108.220.38', port= '5432'
-)
+
+if 'RDS_DB_NAME' in os.environ:
+    username=os.environ['RDS_USERNAME'],
+    password=os.environ['RDS_PASSWORD'],
+    host=os.environ['RDS_HOSTNAME'],
+    port=os.environ['RDS_PORT'],
+    database=os.environ['RDS_DB_NAME']
+    con = psycopg2.connect(database=database, user=username ,password=password, host=host, port= port)
+else:
+    username='postgres',
+    password='postgres',
+    host='localhost',
+    port='5432',
+    database='priyanka'
+    con = psycopg2.connect(database=database, user=str(username[0]), password=str(password[0]), host=str(host[0]), port= str(port[0]))
+
+# #establishing the connection
+# con = psycopg2.connect(database=database, user=username ,password=password, host=str(host[0]), port= str(port[0]))
 
 #Create a Connection
 cur = con.cursor()
@@ -29,3 +44,4 @@ con.commit()
 
 #close the connection
 con.close()
+
