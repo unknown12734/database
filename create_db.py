@@ -4,10 +4,15 @@
 #con = sql.connect('db_web.db')
 
 import psycopg2
+import os
 
 #establishing the connection
 con = psycopg2.connect(
-   database="priyanka", user='postgres', password='postgres', host='localhost', port= '5432'
+   database=os.environ['database'], 
+   user=os.environ['user'], 
+   password=os.environ['password'], 
+   host=os.environ['host'], 
+   port= os.environ['port']
 )
 
 #Create a Connection
