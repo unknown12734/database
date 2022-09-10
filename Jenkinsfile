@@ -12,6 +12,11 @@ pipeline {
         //         sh "ls -lart ./*"
         //     }
         // }
+        stage('restarting docker') {
+            steps {
+                sh "sudo service docker restart"
+            }
+        }
         stage('fetch code complete') {
             steps {
                 echo 'fecthing the code from git is complete.'
