@@ -14,7 +14,7 @@ pipeline {
         // }
         stage('restarting docker') {
             steps {
-                sh "docker rm -f docker ps | grep 60"
+                sh "docker rm -f docker ps | grep 5000"
             }
         }
         stage('fetch code complete') {
