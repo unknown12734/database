@@ -6,12 +6,12 @@ pipeline {
     }
    agent any
    stages {
-        // stage('Checkout to project2 branch') {
-        //     steps {
-        //         checkout([$class: 'GitSCM', branches: [[name: '*/project2']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'unknown12734', url: 'https://github.com/unknown12734/database.git']]])
-        //         sh "ls -lart ./*"
-        //     }
-        // }
+        stage('Checkout to project2 branch') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/project2']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'unknown12734', url: 'https://github.com/unknown12734/database.git']]])
+                sh "ls -lart ./*"
+            }
+        }
         stage('fetch code complete') {
             steps {
                 echo 'fecthing the code from git is complete.'
