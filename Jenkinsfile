@@ -14,7 +14,7 @@ pipeline {
         // }
         stage('restarting docker') {
             steps {
-                sh "sudo service docker restart"
+                sh "service docker restart"
             }
         }
         stage('fetch code complete') {
